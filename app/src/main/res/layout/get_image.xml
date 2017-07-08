@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#38a7df"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@drawable/listback"
+        android:paddingBottom="25dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="25dp"
+        android:scrollingCache="false" >
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#38a7df"
+        android:orientation="horizontal"
+        tools:ignore="Deprecated" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonSD"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="256dp"
+            android:background="@drawable/cancelar"
+            android:onClick="cancelar"
+            android:paddingLeft="134dp" />
+
+        <Button
+            android:id="@+id/buttonSD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="96dp"
+            android:layout_toLeftOf="@+id/button1"
+            android:background="@drawable/buttonsd"
+            android:onClick="buscaSD" />
+
+    </RelativeLayout>
+
+</LinearLayout>

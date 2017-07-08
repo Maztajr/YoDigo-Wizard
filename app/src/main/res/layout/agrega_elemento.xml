@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#38a7df"
+    tools:ignore="ObsoleteLayoutParam,ContentDescription,Deprecated" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Agregar un elemento"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="40sp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/texto"
+        android:layout_width="741dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="47dp"
+        android:ems="10"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        tools:ignore="TextFields" >
+
+        <requestFocus />
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="41dp"
+        android:layout_toRightOf="@+id/texto"
+        android:background="@drawable/play"
+        android:onClick="hablar"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_below="@+id/texto"
+        android:text="Deseos"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/textView3"
+        android:layout_toLeftOf="@+id/textView1"
+        android:background="@drawable/imagen"
+        android:onClick="buscaImagen"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toRightOf="@+id/button1"
+        android:background="@drawable/cancelar"
+        android:onClick="cancelar"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/imageSelect"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignRight="@+id/imageButton2"
+        android:layout_alignTop="@+id/botonCategoria"
+        android:layout_marginRight="57dp"
+        android:src="@drawable/hola"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/botonTipoPalabra"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/botonCategoria"
+        android:layout_marginTop="37dp"
+        android:layout_toLeftOf="@+id/button4"
+        android:background="@drawable/buscatipo"
+        android:onClick="buscaTipoPalabra" />
+
+    <TextView
+        android:id="@+id/tipoPalabraTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/botonTipoPalabra"
+        android:layout_alignBottom="@+id/botonTipoPalabra"
+        android:layout_centerHorizontal="true"
+        android:text="Pronombre personal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="28sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/botonCategoria"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_marginRight="36dp"
+        android:layout_toLeftOf="@+id/imageSelect"
+        android:background="@drawable/searchcat"
+        android:onClick="buscaCategoria" />
+
+    <ImageView
+        android:id="@+id/imageButton1"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView3"
+        android:layout_marginLeft="29dp"
+        android:background="@drawable/can_i_have" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/botonTipoPalabra"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/agregar"
+        android:onClick="agregarComoElemento"
+        android:textSize="25sp" />
+
+</RelativeLayout>
