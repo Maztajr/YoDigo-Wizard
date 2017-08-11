@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements OnClickListener,OnLongClickListener {
     private final static String TAG = "MainActivity";
     public static Typeface font;
-    private Button btnPlay,btnGramma,btnHelp,btnDelete,btnAdd;
+    private Button btnPlay,btnGramma,btnHelp,btnDelete,btnAdd,btnWizard;
     GridView messageGrid;
 
     public static DatabaseHelper databaseHelper;
@@ -65,12 +65,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         btnAdd= (Button)findViewById(R.id.add_button);
         btnDelete= (Button)findViewById(R.id.delete_button);
         btnHelp= (Button)findViewById(R.id.help_button);
+        btnWizard = (Button)findViewById(R.id.btn_wizard);
 
         this.btnGramma.setOnClickListener(this);
         this.btnPlay.setOnClickListener(this);
         this.btnAdd.setOnClickListener(this);
         this.btnDelete.setOnClickListener(this);
         this.btnHelp.setOnClickListener(this);
+        this.btnWizard.setOnClickListener(this);
     }
 
     private void initAdapter(){
@@ -101,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         if(categories != 0){
             categories -= catMaked;
         }*/
+    }
+
+    public void iniWizard(){
+        //Desplegamos en el fragment_container el grid con todas las categorias disponibles
+        //Estas categorias disponibles cambiaran segun en la parte del wizard en la que nos encontremos
     }
 
     public void play(String s){
@@ -170,7 +177,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
                 messageGrid.setAdapter(messageAdapter);
                 messageGrid.requestLayout();
                 break;
-
+            case R.id.btn_wizard:
+                iniWizard();
+                break;
             default: break;
         }
     }

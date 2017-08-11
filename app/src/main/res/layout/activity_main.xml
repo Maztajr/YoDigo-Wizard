@@ -46,9 +46,10 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/btn_wizard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Agregar palabra"
+                    android:text="Iniciar Wizard"
                     android:layout_gravity="center"/>
             </LinearLayout>
 
