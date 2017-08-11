@@ -5,7 +5,7 @@
 
 
     <TextView
-        android:id="@+id/categoryName"
+        android:id="@+id/categoriesTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
