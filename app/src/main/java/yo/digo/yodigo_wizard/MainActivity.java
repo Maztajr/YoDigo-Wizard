@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         //Estas categorias disponibles cambiaran segun en la parte del wizard en la que nos encontremos
         //Log.d(TAG,"Iniciando Wizard");
         CategoryGridFragment catGridFrag = new CategoryGridFragment();
+        catGridFrag.setWizardStep(-1); //valor default
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
