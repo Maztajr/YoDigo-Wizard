@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
     MessageAdapter messageAdapter;
     DialogFragment newFragment;
 
+    int currentWizardStep = 0;
+
     int accessType = 0;
 
     public static final int TIME_ENTRY_REQUEST_CODE = 1;
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         //Estas categorias disponibles cambiaran segun en la parte del wizard en la que nos encontremos
         //Log.d(TAG,"Iniciando Wizard");
         CategoryGridFragment catGridFrag = new CategoryGridFragment();
-        catGridFrag.setWizardStep(-1); //valor default
+        catGridFrag.setWizardStep(currentWizardStep); //valor default
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -119,6 +121,50 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
+    }
+
+    public void showCategoryByName(String nameCategory){
+        CategoryFragment details = new CategoryFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        int id = getIdCategoryByName(nameCategory);
+
+        Log.d(TAG,"Categoria: "+nameCategory+", ID: "+String.valueOf(id));
+
+        Cursor datos = getDataCategory(id);  //obtenemos todos los elemtos de la categoria eledida por el ID
+
+        details.setCategory(id);
+        details.setCurrentImg(datos.getString(0)); //image
+        details.setCurrentName(datos.getString(1)); //cadena
+        details.setCurrentCategory(datos.getInt(2) - 1); //_id
+
+
+
+        ft.replace(R.id.fragment_container, details);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+    public int getIdCategoryByName(String nameCategory){
+        int id = 0;
+        Cursor c = databaseHelper.getCategoryId(nameCategory);
+        c.moveToFirst();
+        id = c.getInt(0); //se obtiene el 1er paremtro, es decir el _id
+        return id;
+    }
+
+    public Cursor getDataCategory(int position){
+        Cursor c = databaseHelper.getCategorias(); //este metodo regresa IMAGEN,CADENA, ID from CATEGORIES
+        c.moveToPosition(position);
+        return  c;
+    }
+
+    public void incrementarWizardStep(){
+        /*currentWizardStep++;
+        if(currentWizardStep > 3)
+            currentWizardStep = 0;*/
+        currentWizardStep = (currentWizardStep + 1) % 4;
+        Log.d(TAG,"Current Wizard Step: "+String.valueOf(currentWizardStep));
     }
 
     public void play(String s){

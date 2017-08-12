@@ -72,6 +72,11 @@ public class CategoryGridFragment extends Fragment {
 
                 //aqui se cambia el fragmente_container del main por el fragment
                 // con los elementos de la categoria seleccionada
+                TextView text = (TextView) view.findViewById(R.id.grid_item_label);
+                String txt = text.getText().toString();
+
+                ((MainActivity)contextFrag).play(txt); //se activa el modulo voz
+                //((MainActivity)contextFrag).showCategoryByName(txt);
             }
         });
 
