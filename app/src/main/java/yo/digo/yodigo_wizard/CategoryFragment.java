@@ -75,7 +75,7 @@ public class CategoryFragment extends Fragment {
             Bitmap bm = modificarTamImagen(currentImg,70,70);
             image.setImageBitmap(bm);
         }else{
-            int imgid = contextFrag.getResources().getIdentifier(currentImg, "drawable", "yo.digo.yodigo_twopanelselect");
+            int imgid = contextFrag.getResources().getIdentifier(currentImg, "drawable", "yo.digo.yodigo_wizard");
             image.setImageResource(imgid);
         }
         image.setPadding(8, 5, 5, 6);
@@ -112,7 +112,7 @@ public class CategoryFragment extends Fragment {
 
                 ((MainActivity)contextFrag).play(txt); //se activa el modulo voz
                 if(imgn.indexOf('/')==-1){//si imagen es una ruta de imagen (imagen de  la SD)
-                    int resId = contextFrag.getResources().getIdentifier(imgn, "drawable", "yo.digo.yodigo_twopanelselect");
+                    int resId = contextFrag.getResources().getIdentifier(imgn, "drawable", "yo.digo.yodigo_wizard");
                     ((MainActivity)contextFrag).messageWindow(txt, resId, clas); //se agrega el elemento a la ventana de mensaje
                 }else{
                     ((MainActivity)contextFrag).messageWindow(txt, imgn, clas); //se agrega el elemento a la ventana de mensaje, siendo imgn, la ruta de una imagen

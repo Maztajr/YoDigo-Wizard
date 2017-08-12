@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
     public void showCategoryByName(String nameCategory){
         CategoryFragment details = new CategoryFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        int id = getIdCategoryByName(nameCategory);
+        int id = getIdCategoryByName(nameCategory) - 1;
 
         Log.d(TAG,"Categoria: "+nameCategory+", ID: "+String.valueOf(id));
 

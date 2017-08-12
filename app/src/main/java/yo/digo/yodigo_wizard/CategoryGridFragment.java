@@ -76,13 +76,13 @@ public class CategoryGridFragment extends Fragment {
                 String txt = text.getText().toString();
 
                 ((MainActivity)contextFrag).play(txt); //se activa el modulo voz
-                //((MainActivity)contextFrag).showCategoryByName(txt);
+                ((MainActivity)contextFrag).showCategoryByName(txt);
             }
         });
 
         //Se rellena el grid con las categorias correspondientes segun el step actual
         categoryItems = new ArrayList<CategoryItem>();
-        //FragmentActivity act = (FragmentActivity) contextFrag; // TAL VEZ NO SE NECESITE,comparar CategoryFragment de TwoPanelSelect
+
         Cursor c = databaseHelper.getCategorias();
         c.moveToFirst();
         Log.d(TAG,"Cargando categorias en el grid, step: "+String.valueOf(step));
