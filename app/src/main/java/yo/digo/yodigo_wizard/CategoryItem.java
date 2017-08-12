@@ -20,10 +20,10 @@ public class CategoryItem {
 
     public CategoryItem(Context context,String title, String icon) {
         this.title = title;
-        if(icon.indexOf('/') != -1) {
+        if(icon.indexOf('/') != -1) { //si no encuentra una diagonal en el texto, entonces no es una imagen de la SD
             this.iconBm = modificarTamImagen(icon,70,70);
         }else{
-            this.icon = context.getResources().getIdentifier(icon, "drawable", "yo.digo.yodigo_twopanelselect");
+            this.icon = context.getResources().getIdentifier(icon, "drawable", "yo.digo.yodigo_wizard");
         }
     }
 
