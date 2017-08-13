@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
                 messageGrid.requestLayout();
                 break;
             case R.id.btn_wizard:
+                btnWizard.setEnabled(false);
                 iniWizard();
                 break;
             default: break;
