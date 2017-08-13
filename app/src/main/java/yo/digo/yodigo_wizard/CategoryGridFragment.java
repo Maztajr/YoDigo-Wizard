@@ -90,8 +90,10 @@ public class CategoryGridFragment extends Fragment {
         while (!c.isAfterLast()){
             CategoryItem ci = new CategoryItem(contextFrag,c.getString(1),c.getString(0));
             //llamar a metodo que filtre segun el step actual...
-            if (filtrarCategoria(ci,step) ) //si es una categoria valida para el step, agregar al array
+            if (filtrarCategoria(ci,step) ) { //si es una categoria valida para el step, agregar al array
+                Log.d(TAG,"Agregado: "+ci.getTitle()+", step: "+String.valueOf(step));
                 categoryItems.add(ci);
+            }
             c.moveToNext();
         }
         //se implementa el adapter con las categorias necesarias
@@ -101,18 +103,24 @@ public class CategoryGridFragment extends Fragment {
 
     public boolean filtrarCategoria(CategoryItem ci,int currentStep){
         String name = ci.getTitle();
+        //Log.d(TAG,"Nombre: "+name+", step: "+String.valueOf(currentStep));
 
         switch (currentStep){
             case 0: if(name.equals("Pronombres"))
                         return true;
+                    break;
             case 1: if(name.equals("Deseos"))
                         return true;
+                    break;
             case 2: if(name.equals("Expresiones") || name.equals("Preguntas"))
                         return true;
+                    break;
             case 3: if(name.equals("Comidas y Bebidas") || name.equals("Lugares") || name.equals("Ropa") || name.equals("Sentimientos") )
                         return true;
+                    break;
             default: return false; /* 'Acciones' 'Frases' 'Saludos' --> estas no se agregan al pizarron, por lo tanto no estaran en este patron*/
         }
+        return false;
     }
 
     @Override
