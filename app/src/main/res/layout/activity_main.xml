@@ -51,6 +51,13 @@
                     android:layout_height="wrap_content"
                     android:text="Iniciar Wizard"
                     android:layout_gravity="center"/>
+
+                <Button
+                    android:id="@+id/btn_resetWizard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reiniciar Wizard"
+                    android:layout_gravity="center"/>
             </LinearLayout>
 
             <LinearLayout

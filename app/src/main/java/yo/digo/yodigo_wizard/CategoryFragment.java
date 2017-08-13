@@ -117,6 +117,9 @@ public class CategoryFragment extends Fragment {
                 }else{
                     ((MainActivity)contextFrag).messageWindow(txt, imgn, clas); //se agrega el elemento a la ventana de mensaje, siendo imgn, la ruta de una imagen
                 }
+                //Despues de agregar el elemento, avanzamos un step en el wizard
+                ((MainActivity)contextFrag).incrementarWizardStep();
+                //((MainActivity)contextFrag).iniWizard(); //se manda a llamar desde el metodo incrementarWizardStep
             }
         });
         /**

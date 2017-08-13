@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements OnClickListener,OnLongClickListener {
     private final static String TAG = "MainActivity";
     public static Typeface font;
-    private Button btnPlay,btnGramma,btnHelp,btnDelete,btnAdd,btnWizard;
+    private Button btnPlay,btnGramma,btnHelp,btnDelete,btnAdd,btnWizard,btnResetWizard;
     GridView messageGrid;
 
     public static DatabaseHelper databaseHelper;
@@ -69,13 +69,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         btnDelete= (Button)findViewById(R.id.delete_button);
         btnHelp= (Button)findViewById(R.id.help_button);
         btnWizard = (Button)findViewById(R.id.btn_wizard);
+        btnResetWizard = (Button)findViewById(R.id.btn_resetWizard);
+        btnResetWizard.setEnabled(false);
 
         this.btnGramma.setOnClickListener(this);
         this.btnPlay.setOnClickListener(this);
         this.btnAdd.setOnClickListener(this);
         this.btnDelete.setOnClickListener(this);
+        this.btnDelete.setOnLongClickListener(this);
         this.btnHelp.setOnClickListener(this);
         this.btnWizard.setOnClickListener(this);
+        this.btnResetWizard.setOnClickListener(this);
+
     }
 
     private void initAdapter(){
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         ft.replace(R.id.fragment_container, catGridFrag);
-        ft.addToBackStack(null);
+        ft.addToBackStack(null); //tal vez para no agregar a una pila de fragments, es mejor omitir esta linea
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
@@ -140,7 +145,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
 
 
         ft.replace(R.id.fragment_container, details);
-        ft.addToBackStack(null);
+        ft.addToBackStack(null); //tal vez para no agregar a una pila de fragments, es mejor omitir esta linea
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+    public void setFragmentDefault(){
+        FragmentDefault fragmentDefault = new FragmentDefault();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        Log.d(TAG,"Colocando Fragment Default");
+        ft.replace(R.id.fragment_container, fragmentDefault);
+        ft.addToBackStack(null); //tal vez para no agregar a una pila de fragments, es mejor omitir esta linea
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
@@ -160,10 +176,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
     }
 
     public void incrementarWizardStep(){
-        /*currentWizardStep++;
-        if(currentWizardStep > 3)
-            currentWizardStep = 0;*/
-        currentWizardStep = (currentWizardStep + 1) % 4;
+        //currentWizardStep = (currentWizardStep + 1) % 4;
+        currentWizardStep++;
+        if(currentWizardStep > 3){ //fin del bucle del wizard
+            Log.d(TAG,"Fin del wizard");
+            currentWizardStep = 0;
+            btnResetWizard.setEnabled(true);
+            //quitamos el fragment actual
+            setFragmentDefault();
+
+        }
+        else { //si aun no termina el wizard, continuar bucle
+            iniWizard();
+        }
         Log.d(TAG,"Current Wizard Step: "+String.valueOf(currentWizardStep));
     }
 
@@ -238,6 +263,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
                 btnWizard.setEnabled(false);
                 iniWizard();
                 break;
+            case R.id.btn_resetWizard:
+                btnResetWizard.setEnabled(false);
+                btnWizard.setEnabled(true);
+                currentWizardStep = 0;
+                resetGridPizarron();
+                break;
             default: break;
         }
     }
@@ -246,14 +277,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,O
     public boolean onLongClick(View v) {
         switch (v.getId()){
             case R.id.delete_button:
-                MessageAdapter adaptador = (MessageAdapter) messageGrid.getAdapter();
+                resetGridPizarron();
+                /*MessageAdapter adaptador = (MessageAdapter) messageGrid.getAdapter();
                 MessageAdapter.emptyGrid();
                 messageGrid.setAdapter(adaptador);
-                messageGrid.requestLayout();
+                messageGrid.requestLayout();*/
                 break;
 
             default: break;
         }
         return  false;
+    }
+
+    public void resetGridPizarron(){
+        MessageAdapter adaptador = (MessageAdapter) messageGrid.getAdapter();
+        MessageAdapter.emptyGrid();
+        messageGrid.setAdapter(adaptador);
+        messageGrid.requestLayout();
     }
 }
